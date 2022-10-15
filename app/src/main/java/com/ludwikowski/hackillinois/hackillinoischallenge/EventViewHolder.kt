@@ -4,7 +4,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ludwikowski.hackillinois.hackillinoischallenge.databinding.ScheduleItemLayoutBinding
 import java.util.*
 
-class EventViewHolder(val binding: ScheduleItemLayoutBinding) : RecyclerView.ViewHolder(binding.root) {
+class EventViewHolder(val binding: ScheduleItemLayoutBinding) :
+    RecyclerView.ViewHolder(binding.root) {
     private lateinit var currentEvent: Event
 
     fun bindEvent(event: Event) {
@@ -24,11 +25,16 @@ class EventViewHolder(val binding: ScheduleItemLayoutBinding) : RecyclerView.Vie
         time.timeInMillis = epochTime * 1000L
         time.timeZone = TimeZone.getTimeZone("America/Chicago")
         var formattedTime = ""
-        if (time[Calendar.HOUR] == 0) formattedTime = "12:${time[Calendar.MINUTE]}";
-        else formattedTime = "${time[Calendar.HOUR]}:${time[Calendar.MINUTE]}";
-        if (time[Calendar.MINUTE] == 0) formattedTime += "0"
-        if (time[Calendar.HOUR_OF_DAY] >= 12) formattedTime += " PM"
-        else formattedTime += " AM"
+        if (time[Calendar.HOUR] == 0) {
+            formattedTime = "12:${time[Calendar.MINUTE]}";
+        } else formattedTime =
+            "${time[Calendar.HOUR]}:${time[Calendar.MINUTE]}";
+        if (time[Calendar.MINUTE] == 0) {
+            formattedTime += "0"
+        }
+        if (time[Calendar.HOUR_OF_DAY] >= 12) {
+            formattedTime += " PM"
+        } else formattedTime += " AM"
         return formattedTime
     }
 
